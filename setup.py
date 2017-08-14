@@ -11,7 +11,7 @@ setup(
     author_email="james.perez@tronc.com",
     description="Easily customizable Slackbot",
     long_description="An easily customizable Slackbot built on the SlackClient python library",
-    url="https://github.com/jperezlatimes/tyranobot/",
+    url="https://github.com/jperezlatimes/tyranobot",
     license="GNU GENERAL PUBLIC LICENSE",
     classifiers=[
         'Development Status :: 4 - Beta',

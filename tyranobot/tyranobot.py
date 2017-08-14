@@ -16,10 +16,10 @@ class TyranoBot(SlackClient):
 
     def __init__(self, bot_data, *args, **kwargs):
         # Call SlackClient's initialization function
-        SlackClient.__init__(self, bot_data['bot_access_token'], *args, **kwargs)
+        SlackClient.__init__(self, bot_data['bot_token'], *args, **kwargs)
 
         # Store the id and set the socket delay
-        self.bot_id = bot_data['bot_user_id']
+        self.bot_id = bot_data['bot_id']
         self.web_socket_delay = 1
 
         # Our dictionaries of replies
