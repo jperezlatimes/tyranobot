@@ -12,7 +12,7 @@ class SlackException(Exception):
     pass
 
 
-class TroncBot(SlackClient):
+class TyranoBot(SlackClient):
 
     def __init__(self, bot_data, *args, **kwargs):
         # Call SlackClient's initialization function
@@ -75,7 +75,7 @@ class TroncBot(SlackClient):
         if messages and len(messages) > 0:
             for message in messages:
                 if message and 'text' in message:
-                    # Make sure TroncBot doesn't start talking to itself. That would be crazy
+                    # Make sure TyranoBot doesn't start talking to itself. That would be crazy.
                     if 'user' in message and message['user'] == self.bot_id:
                         return msg, channel, active
 
