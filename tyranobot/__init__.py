@@ -1,1 +1,1 @@
-from troncbot import *
+from tyranobot import *
