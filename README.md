@@ -15,7 +15,6 @@ Usage
 -------
 Tyranobot is meant to be extended and customized like so:
 ```python
-import os
 import re
 from random import randint
 from tyranobot import TyranoBot
@@ -141,10 +140,59 @@ Tyranobot has 3 options for adding replies to it's repotoire.
 
 `add_active_reply(reply dict)`: Adds a single active reply to Tyranobot's list. The `type` key can be omitted from the passed reply dict.
 
-`add_replies(reply list)`: Adds a list of replies to Tyranobot. Most useful during the initializatio process. Accepts a list(array) of reply dicts as an argument. Can even be used to load a list of replies from an external file like so:
+`add_replies(reply list)`: Adds a list of replies to Tyranobot. Most useful during the initializatio process. Accepts a list(array) of reply dicts as an argument. Can even be used to load a list of replies from an external file. The the replies for the MyBot example above can be listed in a `json` file:
 
-```python
- # Load list of replies from a json file
-filepath = os.path.dirname(os.path.realpath(__file__)) + "/replies.json"
-self.add_replies(filepath)
+```json
+[
+    {
+      "type": "passive",
+      "pattern": "h[ello|i].*mybot.*",
+      "response": "Hello human!",
+      "action": "message"
+    },
+    {
+      "type": "active",
+      "pattern": "tell\s*(me)*\s*a*\s*joke",
+      "response": [
+        "https://www.youtube.com/watch?v=kTcRRaXV-fg",
+        "https://www.youtube.com/watch?v=Mdqv5xIsFLM",
+        "Q: Where do orcas hear music? A: Orca-stras!",
+        "Q: What do you call a blind dinosaur? A: Do-you-think-he-saurus"
+      ],
+      "action": "random"
+    },
+    {
+      "type": "active",
+      "pattern": "(?:R|roll\\s)*([1-9]*)(d|D)([1-9].*)",
+      "response": "roll_dice",
+      "action": "function"
+    }
+]
 ```
+
+And then loaded into your instance of TyranoBot at initialization: 
+```python
+import os
+import re
+from random import randint
+from tyranobot import TyranoBot
+
+class MyBot(TroncBot):
+
+    def __init__(self, bot_data, *args, **kwargs):
+        # Call TroncBot's initialization function
+        TyranoBot.__init__(self, bot_data, *args, **kwargs)
+
+        # Load list of replies from a json file
+        filepath = os.path.dirname(os.path.realpath(__file__)) + "/replies.json"
+        self.add_replies(filepath)
+
+    def roll_dice(self, msg):
+        """
+        This is an example of a function response. When MyBot hears @MyBot Roll X dY,
+        MyBot will roll X number of Y sided dice and send the result back as a Slack message.
+        """
+        ...
+```
+
+This can help to keep you TyranoBot instance as clean as possible.
