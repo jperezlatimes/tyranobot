@@ -4,9 +4,11 @@ from setuptools import setup, find_packages
 
 setup(
     name="tyranobot",
-    version="0.2.0",
+    version="0.2.1",
     packages=find_packages(),
-    install_requires=(),
+    install_requires=(
+        "slackclient",
+    ),
     author="James Perez",
     author_email="james.perez@tronc.com",
     description="Easily customizable Slackbot",
