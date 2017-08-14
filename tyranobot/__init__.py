@@ -1,1 +1,1 @@
-from tyranobot import *
+from tyranobot import * # noqa

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 import re
 import json
 import time
@@ -129,7 +128,7 @@ class TyranoBot(SlackClient):
         """
         Returns a randomly selected reply from a given list
         """
-        selection = randint(0, int(len(reply_list)-1))
+        selection = randint(0, int(len(reply_list) - 1))
         return reply_list[selection]
 
     def get_function_reply(self, function_name, msg):
@@ -155,7 +154,7 @@ class TyranoBot(SlackClient):
             'action': reply.get('action', 'message')
         }
         # Save the reply
-        self.replies['passive'].append(reply)
+        self.replies['passive'].append(new_reply)
 
     def add_active_reply(self, reply):
         """
