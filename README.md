@@ -16,7 +16,7 @@ Usage
 TyranoBot can be started very simply by just providing a bot_token, and bot_id:
 
 ```python
-from TyranoBot import TyranoBot
+from tyranobot import TyranoBot
 
 # Initialize the bot
 MyBot = TyranoBot({
@@ -39,7 +39,7 @@ TyranoBot really shines when it's extended and customized. By adding different r
 ```python
 import re
 from random import randint
-from TyranoBot import TyranoBot
+from tyranobot import TyranoBot
 
 class MyBot(TroncBot):
 
@@ -202,7 +202,7 @@ And then loaded into your instance of TyranoBot at initialization:
 import os
 import re
 from random import randint
-from TyranoBot import TyranoBot
+from tyranobot import TyranoBot
 
 class MyBot(TroncBot):
 
