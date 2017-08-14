@@ -1,4 +1,4 @@
-Tyranobot
+TyranoBot
 ===================
 ![Python versions](https://img.shields.io/badge/python-2.7-blue.svg)
 
@@ -6,17 +6,17 @@ An easily customizable Slackbot built on the SlackClient python library.
 
 Installation
 ------------
-Install the Tyranobot module from [Pypi](https://pypi.python.org/pypi/tyranobot)
+Install the TyranoBot module from [Pypi](https://pypi.python.org/pypi/TyranoBot)
 ```bash
-pip install tyranobot
+pip install TyranoBot
 ```
 
 Usage
 -------
-Tyranobot can be started very simply by just providing a bot_token, and bot_id:
+TyranoBot can be started very simply by just providing a bot_token, and bot_id:
 
 ```python
-from tyranobot import TyranoBot
+from TyranoBot import TyranoBot
 
 # Initialize the bot
 MyBot = TyranoBot({
@@ -35,11 +35,11 @@ MyBot.add_passive_reply({
 MyBot.start()
 ```
 
-Tyranobot really shines when it's extended and customized. By adding different reply types TyranoBot can reply in different ways:
+TyranoBot really shines when it's extended and customized. By adding different reply types TyranoBot can reply in different ways:
 ```python
 import re
 from random import randint
-from tyranobot import TyranoBot
+from TyranoBot import TyranoBot
 
 class MyBot(TroncBot):
 
@@ -121,7 +121,7 @@ MyBot.start()
 
 Reply Objects
 -------
-Tyranobot responds to messages via a list of reply objects. A reply object is a dictionary with the following structure:
+TyranoBot responds to messages via a list of reply objects. A reply object is a dictionary with the following structure:
 ```python
 {
   "type": "passive|active",
@@ -134,40 +134,40 @@ Tyranobot responds to messages via a list of reply objects. A reply object is a 
 Key       | Value
 --------- | -------------
 `type`    | The type of reply this is. Expected values are "passive" or "active". See Reply Types below for details.
-`pattern` | A regular expression string that Tyranobot should use to identify messages it should respond to. Tyranobot automatically converts incoming messages to lowercase to make regex matching simpler.
-`response`| Tyranobot's response to any messages that match the `pattern`. Can be a string, list(array), or the name of a callable function depending on the value of  `action`.
-`action`  | The action that Tyranobot is making to reply. Expected values are "message", "random", or "function". See Reply Actions below for more details.
+`pattern` | A regular expression string that TyranoBot should use to identify messages it should respond to. TyranoBot automatically converts incoming messages to lowercase to make regex matching simpler.
+`response`| TyranoBot's response to any messages that match the `pattern`. Can be a string, list(array), or the name of a callable function depending on the value of  `action`.
+`action`  | The action that TyranoBot is making to reply. Expected values are "message", "random", or "function". See Reply Actions below for more details.
 
 
 Reply Types
 -------
-Tyranobot has two reply types:
+TyranoBot has two reply types:
 
-**Passive:** Passive replies are replies Tyranobot can use to reply to any incidental chatter in whatever channel(s) it has been invited too.
+**Passive:** Passive replies are replies TyranoBot can use to reply to any incidental chatter in whatever channel(s) it has been invited too.
 
-**Active:** Active replies are replies that Tyranobot can use to reply to targets @tyranobot messages.
+**Active:** Active replies are replies that TyranoBot can use to reply to targeted @<your-bot-name> messages.
 
 
 Reply Actions
 -------
-**Message:** A simple message reply. Tyranobot will reply to the received message with a simple string message.
+**Message:** A simple message reply. TyranoBot will reply to the received message with a simple string message.
 
-**Random:** Tyranobot will reply to the received message by randomly selecting one of a list of possible replies
+**Random:** TyranoBot will reply to the received message by randomly selecting one of a list of possible replies
 
-**Function (Advanced):** Tyranobot will reply to the received message with the output of the named function. Tyranobot will pass the received message as arguments to the named function for processing.
+**Function (Advanced):** TyranoBot will reply to the received message with the output of the named function. TyranoBot will pass the received message as arguments to the named function for processing.
 
 (Coming soon: Attachments)
 
 
 Adding Replies
 -------
-Tyranobot has 3 options for adding replies to it's repotoire.
+TyranoBot has 3 options for adding replies to it's repotoire.
 
-`add_passive_reply(reply dict)`: Adds a single passive reply to Tyranobot's list. The `type` key can be omitted from the passed reply dict.
+`add_passive_reply(reply dict)`: Adds a single passive reply to TyranoBot's list. The `type` key can be omitted from the passed reply dict.
 
-`add_active_reply(reply dict)`: Adds a single active reply to Tyranobot's list. The `type` key can be omitted from the passed reply dict.
+`add_active_reply(reply dict)`: Adds a single active reply to TyranoBot's list. The `type` key can be omitted from the passed reply dict.
 
-`add_replies(reply list)`: Adds a list of replies to Tyranobot. Most useful during the initializatio process. Accepts a list(array) of reply dicts as an argument. Can even be used to load a list of replies from an external file. The the replies for the MyBot example above can be listed in a `json` file:
+`add_replies(reply list)`: Adds a list of replies to TyranoBot. Most useful during the initializatio process. Accepts a list(array) of reply dicts as an argument. Can even be used to load a list of replies from an external file. The the replies for the MyBot example above can be listed in a `json` file:
 
 ```json
 [
@@ -202,7 +202,7 @@ And then loaded into your instance of TyranoBot at initialization:
 import os
 import re
 from random import randint
-from tyranobot import TyranoBot
+from TyranoBot import TyranoBot
 
 class MyBot(TroncBot):
 
