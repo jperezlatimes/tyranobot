@@ -116,18 +116,18 @@ Reply Types
 -------
 Tyranobot has two reply types:
 
-*Passive*: Passive replies are replies Tyranobot can use to reply to any incidental chatter in whatever channel(s) it has been invited too. 
+**Passive:** Passive replies are replies Tyranobot can use to reply to any incidental chatter in whatever channel(s) it has been invited too. 
 
-*Active*: Active replies are replies that Tyranobot can use to reply to targets @tyranobot messages.
+**Active:** Active replies are replies that Tyranobot can use to reply to targets @tyranobot messages.
 
 
 Reply Actions
 -------
-*Message*: A simple message reply. Tyranobot will reply to the received message with a simple string message. 
+**Message:** A simple message reply. Tyranobot will reply to the received message with a simple string message. 
 
-*Random*: Tyranobot will reply to the received message by randomly selecting one of a list of possible replies
+**Random:** Tyranobot will reply to the received message by randomly selecting one of a list of possible replies
 
-*Function (Advanced)*: Tyranobot will reply to the received message with the output of the named function. Tyranobot will pass the received message as arguments to the named function for processing.
+**Function (Advanced):** Tyranobot will reply to the received message with the output of the named function. Tyranobot will pass the received message as arguments to the named function for processing.
 
 (Coming soon: Attachments)
 
