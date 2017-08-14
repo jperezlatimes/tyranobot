@@ -18,6 +18,6 @@ setup(
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 2.7',
         'Intended Audience :: Developers',
-        'Topic :: Communications :: Chat',
+        'Topic :: Communications :: Chat'
     ]
 )
