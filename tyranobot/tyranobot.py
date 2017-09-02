@@ -17,7 +17,8 @@ class TyranoBot(SlackClient):
         # Call SlackClient's initialization function
         SlackClient.__init__(self, bot_data['bot_token'], *args, **kwargs)
 
-        # Store the id and set the socket delay
+        # Store the token and id then set the socket delay
+        self.token = bot_data['bot_token']
         self.bot_id = bot_data['bot_id']
         self.web_socket_delay = 1
 
@@ -56,10 +57,39 @@ class TyranoBot(SlackClient):
 
                 # If we have a reply, send it
                 if reply:
-                    self.api_call("chat.postMessage", channel=channel, text=reply, as_user=True)
+                    if type(reply) is dict:
+                        # If the reply is a dict, try to send it as a formatted slack message
+                        reply["channel"] = channel
+                        try:
+                            self.send_formatted_message(reply)
+                        except KeyError as e:
+                            raise SlackException('Slack message formatted incorrectly. Problem with key: ' + str(e))
+
+                    else:
+                        # Otherwise, just send the message as a normal string
+                        self.api_call("chat.postMessage", channel=channel, text=str(reply), as_user=True)
 
             # Sleep for a sec
             time.sleep(self.web_socket_delay)
+
+    def send_formatted_message(self, reply):
+        """
+        The SlackClient library doesn't support message attachments.
+        So to get around that, we'll use the requests library to post
+        more complex message types.
+        """
+        # Build a nicely formatted Slack message
+        message = {
+            'token': self.token,
+            'channel': reply['channel'],
+            'as_user': 'true',
+            'text': reply['text'],
+            'attachments': json.dumps(reply['attachments'])
+        }
+
+        # Send it
+        from requests import post
+        resp = post("https://slack.com/api/chat.postMessage", params=message)
 
     def parse_messages(self, messages):
         """
