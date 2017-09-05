@@ -156,7 +156,7 @@ Reply Actions
 
 **Function (Advanced):** TyranoBot will reply to the received message with the output of the named function. TyranoBot will pass the received message as arguments to the named function for processing.
 
-(Coming soon: Attachments)
+TyranoBot has support for Slack message attachments in it's responses. If the final `response` from a reply object is a dictionary, TyranoBot will assume that it is a [Slack message object](https://api.slack.com/docs/messages) and will send the whole dict as a POST request to the channel that TyranoBot was originally messaged from.
 
 
 Adding Replies
