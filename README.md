@@ -41,7 +41,7 @@ import re
 from random import randint
 from tyranobot import TyranoBot
 
-class MyBot(TroncBot):
+class MyBot(TyranoBot):
 
   def __init__(self, bot_data, *args, **kwargs):
       # Call TroncBot's initialization function
