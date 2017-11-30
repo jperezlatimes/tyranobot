@@ -1,0 +1,1 @@
+from tyranobot import * # noqa

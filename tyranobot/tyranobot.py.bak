@@ -3,7 +3,6 @@
 import re
 import json
 import time
-from builtins import str
 from random import randint
 from slackclient import SlackClient
 
