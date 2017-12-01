@@ -1,6 +1,7 @@
 TyranoBot
 ===================
-![Python versions](https://img.shields.io/badge/python-2.7-blue.svg)
+![Python versions](https://img.shields.io/badge/Python-2.7-blue.svg?style=for-the-badge)
+![Python versions](https://img.shields.io/badge/Python-3-green.svg?style=for-the-badge)
 
 An easily customizable Slackbot built on the SlackClient python library.
 
