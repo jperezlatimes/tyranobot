@@ -3,7 +3,9 @@
 import re
 import json
 import time
+from builtins import str
 from random import randint
+from urllib import unquote
 from slackclient import SlackClient
 
 
@@ -19,7 +21,7 @@ class TyranoBot(SlackClient):
 
         # Store the token and id then set the socket delay
         self.token = bot_data['bot_token']
-        self.bot_id = bot_data['bot_id']
+        self.bot_id = self.get_bot_id(bot_data)
         self.web_socket_delay = 1
 
         # Our dictionaries of replies
@@ -27,6 +29,29 @@ class TyranoBot(SlackClient):
             'passive': [],
             'active': []
         }
+
+    def get_bot_id(self, bot_data):
+        """
+        Determine's our bot's user id either through the given bot bot_data
+        or by combing through the user list
+        """
+        if bot_data.get('bot_id') and bot_data['bot_id'] != '':
+            return bot_data['bot_id']
+        elif bot_data.get('bot_name'):
+            user_list = self.api_call("users.list")
+            if not user_list.get('ok'):
+                raise SlackException('Unable to retrieve user list for bot identification')
+            if user_list.get('ok'):
+                # retrieve all users so we can find our bot
+                for user in user_list.get('members'):
+                    if 'name' in user and user.get('name') == bot_data['bot_name']:
+                        if not user['deleted']:
+                            return user['id']
+                        else:
+                            raise SlackException('Bot user {0} appears to have been deleted. Please use another bot.'.format(bot_data['bot_name']))
+
+                # If the loop completes without finding the bot, raise an exception
+                raise SlackException('Bot user {0} not found.'.format(bot_data['bot_name']))
 
     @property
     def web_socket_delay(self):
@@ -41,7 +66,7 @@ class TyranoBot(SlackClient):
         if self.rtm_connect():
             self.listen()
         else:
-            raise SlackException("Could not connect, purging bot from list")
+            raise SlackException('Could not connect, purging bot from list')
 
     def listen(self):
         """
@@ -63,11 +88,11 @@ class TyranoBot(SlackClient):
                         try:
                             self.send_formatted_message(reply)
                         except KeyError as e:
-                            raise SlackException('Slack message formatted incorrectly. Problem with key: ' + str(e))
+                            raise SlackException('Slack message formatted incorrectly. Problem with key: {0}'.format(e))
 
                     else:
                         # Otherwise, just send the message as a normal string
-                        self.api_call("chat.postMessage", channel=channel, text=str(reply), as_user=True)
+                        self.api_call("chat.postMessage", channel=channel, text=unquote(reply), as_user=True)
 
             # Sleep for a sec
             time.sleep(self.web_socket_delay)
@@ -147,7 +172,6 @@ class TyranoBot(SlackClient):
                         return self.get_random_reply(reply['response'])
                     if reply['action'] == 'function':
                         return self.get_function_reply(reply['response'], msg)
-
                     else:
                         return reply['response']
 
