@@ -3,22 +3,24 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="tyranobot",
-    version="0.2.0",
+    name='tyranobot',
+    version='0.2.0',
     packages=find_packages(),
     install_requires=(
-        "slackclient",
+        'slackclient',
+        'futures; python_version == "2.7"'
     ),
-    author="James Perez",
-    author_email="james.perez@tronc.com",
-    description="Easily customizable Slackbot",
-    long_description="An easily customizable Slackbot built on the SlackClient python library",
-    url="https://github.com/jperezlatimes/tyranobot",
-    license="GNU GENERAL PUBLIC LICENSE",
+    author='James Perez',
+    author_email='james.perez@tronc.com',
+    description='Easily customizable Slackbot',
+    long_description='An easily customizable Slackbot built on the SlackClient python library',
+    url='https://github.com/jperezlatimes/tyranobot',
+    license='GNU GENERAL PUBLIC LICENSE',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Intended Audience :: Developers',
         'Topic :: Communications :: Chat'
     ]
