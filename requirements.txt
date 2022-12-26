@@ -6,4 +6,4 @@ six==1.10.0
 slackclient==1.0.7
 urllib3==1.22
 websocket-client==0.44.0
-wheel==0.24.0
+wheel==0.38.1
